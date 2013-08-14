@@ -7,7 +7,7 @@ JSON is awesome but it doesn't look that great.  JSONTable can help:
 ````js
 var options = { pageSize: 20 }
 JSONTable('myTargetID', myJSON, options)
-
+````
 ### Options
 Key | Type | Description | Example
 --- | --- | --- | ---
@@ -52,7 +52,7 @@ $(document).ready(function($){
 		}
 	}); 
 }); 
-
+````
 
 ### License
 ````js
