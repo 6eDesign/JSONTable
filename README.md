@@ -46,7 +46,7 @@ Filter: <input id="myFilter" type="text" />
 #### Javascript: 
 ````js
 var yell = function(data) { 
-	return "<a>" + data + "!</a>"; 
+	return data + "!"; 
 }
 
 $(document).ready(function($){
