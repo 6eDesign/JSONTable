@@ -1,6 +1,6 @@
 # JSONTable
 Quickly & Easily render responsive and customize-able views for virtually any JSON data-set.  
-![alt tag](https://raw.github.com/username/projectname/branch/path/to/img.png)
+![alt tag](https://raw.github.com/6eDesign/JSONTable/master/lib/img/example.png)
 Now accompanied by the power of a customized FooTable build for sorting, filtering, column-picking, and pagination capabilities.  
 
 ### Usage
