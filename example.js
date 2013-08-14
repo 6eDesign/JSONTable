@@ -1001,11 +1001,22 @@ h: "eros nec tellus. Nunc"
 }
 ]
 
+
 var yell = function(data) { 
 	return data + "!"; 
 }
 
 $(document).ready(function($){
+	/* activate the following code to turn this sample JSON into a 10k length array: 
+			pros: it works
+			cons: it takes like 40 seconds on a quad core machine w/ Footable enabled
+			      it still takes about 5 seconds on quad core w/ Footable disabled
+	*/
+	// var jsoncopy = JSON; 
+	// for(var i=0; i < 100; ++i) { 
+	// 	JSON = JSON.concat(jsoncopy); 
+	// }
+
 	JSONTable("table", JSON, { 
 		/*
 			show also accepts a string in the form of: 
@@ -1037,5 +1048,6 @@ $(document).ready(function($){
 		, paginationId:  'pagination1'
 		// let JSON table how many items you would like per page: 
 		, perPage: 10
+		// , makeFootable: false
 	}); 
 }); 
