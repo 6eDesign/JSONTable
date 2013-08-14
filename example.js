@@ -1001,26 +1001,6 @@ h: "eros nec tellus. Nunc"
 }
 ]
 
-// $(document).ready(function($){
-// 	// JSONTable(id, json, {opts})
-// 	// JSONTable("table", JSON); 
-// 	$.ajax({
-// 		url: "https://kr.nodejitsu.com/api/v1/strains/",
-// 		xhrFields: {
-//       		withCredentials: true
-//    		}
-// 	}).done(function ( data ) {
-// 		if( console && console.log ) {
-// 			// console.log(data); 
-// 			JSONTable("table", data, { 
-// 				// example options: 
-// 				shown: [ 'name', 'full_name', 'html_url' ]
-// 			}); 
-// 			// console.log("Sample of data:", data.slice(0, 100));
-// 		}
-// 	});
-// }); 
-
 var yell = function(data) { 
 	return data + "!"; 
 }
