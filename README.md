@@ -18,7 +18,7 @@ JSONTable('myTargetID', myJSON)
 ### Options
 Key | Type | Description | Example
 --- | --- | --- | ---
-'show' | String OR [] | Specify how many (String) or which (Array) JSON keys should be included in the default column layout. | 'first_6' OR [ 'key1', 'key2', 'key3' ]
+'show' | String (or) [] | Specify how many (String) or which (Array) JSON keys should be included in the default column layout. | 'first_6' OR [ 'key1', 'key2', 'key3' ]
 'trim' | [] | Provide an array of JSON keys which you would like excluded from the view. | [ 'key1', 'key2', 'key3' ]
 'keyMap' | {} | Provide more friendly names/translations for JSON keys. | { 'origKeyName': 'My Fancy New Key Name' } 
 'filterMap' | {} | Specify functions to filter specific JSON values before displaying them in the table. | { 'keyIWantToFilter': 'myFilterFunctionsName' } 
