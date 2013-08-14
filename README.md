@@ -3,35 +3,49 @@ Quickly & Easily render responsive and customize-able views for virtually any JS
 ![alt tag](https://raw.github.com/6eDesign/JSONTable/master/lib/img/example.png)
 Now accompanied by the power of a customized FooTable build for sorting, filtering, column-picking, and pagination capabilities.  
 
-### Usage
+### Usage (Simple Case)
 ##### HTML:
 ````html
-<div id="table">
-</div>
-<ul id="pagination1" class="footable-nav">
-	<span>Pages:</span>
-</ul>
+<div id="table"></div>
+
 ```` 
 ##### Javascript: 
 ````js
-var options = { pageSize: 20 }
 // create JSONTable from 'myJSON' and append it to the element with ID: 'myTargetId':
-JSONTable('myTargetID', myJSON, options) 
+JSONTable('myTargetID', myJSON) 
 ````
+
 ### Options
 Key | Type | Description | Example
 --- | --- | --- | ---
-'show' | String | Specify how many JSON keys should be included in the default column layout. | 'first_6'
-'show' | [] | Specify the exact JSON keys to include in the default column layout. | [ 'key1', 'key2', 'key3' ]
+'show' | String OR [] | Specify how many (String) or which (Array) JSON keys should be included in the default column layout. | 'first_6' OR [ 'key1', 'key2', 'key3' ]
 'trim' | [] | Provide an array of JSON keys which you would like excluded from the view. | [ 'key1', 'key2', 'key3' ]
 'keyMap' | {} | Provide more friendly names/translations for JSON keys. | { 'origKeyName': 'My Fancy New Key Name' } 
-'filterMap' | {} | Specify functions to filter specific JSON values before displaying them in the table. | { 'keyOfFilteredData': 'myFilterFunctionsName' } 
-'pageSize' | Int | How many results should be on each 'page'? | default: 10
+'filterMap' | {} | Specify functions to filter specific JSON values before displaying them in the table. | { 'keyIWantToFilter': 'myFilterFunctionsName' } 
+'paginationId' | String | Provide an element ID for the pagination links if you would like to enable pagination | default: Disabled
+'perPage' | Int | How many results should be on each 'page'? | default: 10
+'searchId' | String | Allow searching of the JSON data by providing the ID for your search text box input. | 'myInputID'
+'breakpoints' | {} | Provide custom breakpoints for the FooTable. | default: { phone: 480, tablet: 1024, desktop: 10000 }
 
-### Advanced Usage
+### Usage (Advanced Case)
+
+#### HTML: 
+````html 
+
+Filter: <input id="myFilter" type="text" /> 
+
+<div id="table"></div>
+
+<ul id="pagination1" class="footable-nav">
+	<span>Pages:</span>
+</ul>
+
+````
+
+#### Javascript: 
 ````js
 var doStuff = function(data) { 
-	return data + "!"; 
+	return "<a>" + data + "!</a>"; 
 }
 
 $(document).ready(function($){
@@ -58,8 +72,14 @@ $(document).ready(function($){
 			}
 		*/
 		, filterMap: { 
-			'a': 'doStuff'
+			'a': 'yell'
 		}
+		// provide the ID of the text box used for searching/filtering JSON data: 
+		, searchId: 'myFilter'
+		// provide the ID of the element where you would like to store your pagination links: 
+		, paginationId:  'pagination1'
+		// let JSON table how many items you would like per page: 
+		, perPage: 10
 	}); 
 }); 
 ````

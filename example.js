@@ -1021,8 +1021,8 @@ h: "eros nec tellus. Nunc"
 // 	});
 // }); 
 
-var doStuff = function(data) { 
-	return "<a>" + data + "!</a>"; 
+var yell = function(data) { 
+	return data + "!"; 
 }
 
 $(document).ready(function($){
@@ -1049,7 +1049,13 @@ $(document).ready(function($){
 			}
 		*/
 		, filterMap: { 
-			'a': 'doStuff'
+			'a': 'yell'
 		}
+		// provide the ID of the text box used for searching/filtering JSON data: 
+		, searchId: 'myFilter'
+		// provide the ID of the element where you would like to store your pagination links: 
+		, paginationId:  'pagination1'
+		// let JSON table how many items you would like per page: 
+		, perPage: 10
 	}); 
 }); 
