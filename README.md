@@ -5,7 +5,7 @@ Now accompanied by the power of a customized FooTable build for sorting, filteri
 
 ### Usage
 ##### HTML:
-````js
+````html
 <div id="table">
 </div>
 <ul id="pagination1" class="footable-nav">
