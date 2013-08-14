@@ -78,7 +78,7 @@ $(document).ready(function($){
 		, searchId: 'myFilter'
 		// provide the ID of the element where you would like to store your pagination links: 
 		, paginationId:  'pagination1'
-		// let JSON table how many items you would like per page: 
+		// let JSON table know how many items you would like per page: 
 		, perPage: 10
 	}); 
 }); 
