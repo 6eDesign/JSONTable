@@ -1,12 +1,11 @@
 # JSONTable
-
-## JSONTable <img src="https://drone.io/github.com/6eDesign/JSONTable/status.png" align="right" />
-JSON is awesome but it doesn't look that great.  JSONTable can help: 
+Quickly & Easily render responsive and customize-able views for virtually any JSON data-set. 
 
 ### Usage
 ````js
 var options = { pageSize: 20 }
-JSONTable('myTargetID', myJSON, options)
+// create JSONTable from 'myJSON' and append it to the element with ID: 'myTargetId':
+JSONTable('myTargetID', myJSON, options) 
 ````
 ### Options
 Key | Type | Description | Example
@@ -21,7 +20,7 @@ Key | Type | Description | Example
 ### Advanced Usage
 ````js
 var doStuff = function(data) { 
-	return "<a>" + data + "!</a>"; 
+	return data + "!"; 
 }
 
 $(document).ready(function($){
