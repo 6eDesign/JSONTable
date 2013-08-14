@@ -1,7 +1,18 @@
 # JSONTable
-Quickly & Easily render responsive and customize-able views for virtually any JSON data-set. 
+Quickly & Easily render responsive and customize-able views for virtually any JSON data-set.  
+
+Now accompanied by the power of a customized FooTable build for sorting, filtering, column-picking, and pagination capabilities.  
 
 ### Usage
+##### HTML:
+````js
+<div id="table">
+</div>
+<ul id="pagination1" class="footable-nav">
+	<span>Pages:</span>
+</ul>
+```` 
+##### Javascript: 
 ````js
 var options = { pageSize: 20 }
 // create JSONTable from 'myJSON' and append it to the element with ID: 'myTargetId':
@@ -14,7 +25,7 @@ Key | Type | Description | Example
 'show' | [] | Specify the exact JSON keys to include in the default column layout. | [ 'key1', 'key2', 'key3' ]
 'trim' | [] | Provide an array of JSON keys which you would like excluded from the view. | [ 'key1', 'key2', 'key3' ]
 'keyMap' | {} | Provide more friendly names/translations for JSON keys. | { 'origKeyName': 'My Fancy New Key Name' } 
-'filterMap' | String | Specify functions to filter JSON values before displaying them in the table. | 'myFilterFunctionsName'
+'filterMap' | {} | Specify functions to filter specific JSON values before displaying them in the table. | { 'keyOfFilteredData': 'myFilterFunctionsName' } 
 'pageSize' | Int | How many results should be on each 'page'? | default: 10
 
 ### Advanced Usage
