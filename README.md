@@ -26,7 +26,7 @@ Key | Type | Description | Example
 'perPage' | Int | How many results should be on each 'page'? | default: 10
 'searchId' | String | Allow searching of the JSON data by providing the ID for your search text box input. | 'myInputID'
 'breakpoints' | {} | Provide custom breakpoints for the FooTable. | default: { phone: 480, tablet: 1024, desktop: 10000 }
-'makeFootable' | Boolean | Disable the creation of the FooTable object for a plain HTML table. | default: false
+'makeFootable' | Boolean | Disable the creation of the FooTable object for a plain HTML table by setting this to false. | default: true
 
 ### Usage (Advanced Case)
 
