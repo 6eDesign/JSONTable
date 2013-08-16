@@ -101,6 +101,10 @@ header h2 {
 }
 
 #main-content {
+  width: 100%; 
+}
+
+#license-content { 
   width: 690px;
   float: left;
 }
