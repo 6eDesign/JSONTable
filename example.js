@@ -1013,7 +1013,7 @@ $(document).ready(function($){
 			      it still takes about 5 seconds on quad core w/ Footable disabled
 	*/
 	// var jsoncopy = JSON; 
-	// for(var i=0; i < 100; ++i) { 
+	// for(var i=0; i < 99; ++i) { 
 	// 	JSON = JSON.concat(jsoncopy); 
 	// }
 
