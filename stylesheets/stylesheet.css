@@ -215,7 +215,8 @@ th {
 
 td {
   border: 1px solid #ebebeb;
-  text-align: center; 
+  /*text-align: center; */
+  padding: 10px;
   font-weight: 300;
 }
 
@@ -236,11 +237,12 @@ form {
 } 
 
 #main-content h1:before {
-  content: "/";
+  content: "//";
   color: #9ddcff;
   padding-right: 0.3em;
   margin-left: -0.9em;
 }
+
 
 #main-content h2 {
   font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif; 
@@ -266,7 +268,7 @@ form {
 } 
  
 #main-content h3:before {
-  content: "///";
+  content: "//";
   color: #9ddcff;
   padding-right: 0.3em;
   margin-left: -2em;
@@ -280,7 +282,7 @@ form {
 } 
 
 h4:before {
-  content: "////";
+  /*content: "////";*/
   color: #9ddcff;
   padding-right: 0.3em;
   margin-left: -2.8em;
@@ -288,11 +290,10 @@ h4:before {
 
 #main-content h5 {
   font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif; 
-  font-size: 14px;
+  font-size: 17px;
   color: #474747;
 } 
 h5:before {
-  content: "/////";
   color: #9ddcff;
   padding-right: 0.3em;
   margin-left: -3.2em;
@@ -394,7 +395,10 @@ footer a:hover {
     font-size: 30px;
   }
   #main-content {
-    width: 490px;
+    width: 100%;
+  }
+  #license-content { 
+    width: 490px; 
   }
   #main-content h1:before,
   #main-content h2:before,

@@ -65,7 +65,194 @@
 
 Now accompanied by the power of a customized FooTable build for sorting, filtering, column-picking, and pagination capabilities.  </p>
 
+<h3>
+<a name="usage-simple-case" class="anchor" href="#usage-simple-case"><span class="octicon octicon-link"></span></a>Usage (Simple Case)</h3>
 
+<h5>
+<a name="html" class="anchor" href="#html"><span class="octicon octicon-link"></span></a>HTML:</h5>
+
+<div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"table"</span><span class="nt">&gt;&lt;/div&gt;</span>
+
+</pre></div>
+
+<h5>
+<a name="javascript" class="anchor" href="#javascript"><span class="octicon octicon-link"></span></a>Javascript:</h5>
+
+<div class="highlight"><pre><span class="c1">// create JSONTable from 'myJSON' and append it to the element with ID: 'myTargetId':</span>
+<span class="nx">JSONTable</span><span class="p">(</span><span class="s1">'myTargetID'</span><span class="p">,</span> <span class="nx">myJSON</span><span class="p">)</span> 
+</pre></div>
+
+<h3>
+<a name="options" class="anchor" href="#options"><span class="octicon octicon-link"></span></a>Options</h3>
+
+<table>
+<thead><tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+<th>Example</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>'show'</td>
+<td>String (or) []</td>
+<td>Specify how many (String) or which (Array) JSON keys should be included in the default column layout.</td>
+<td>'first_6' OR [ 'key1', 'key2', 'key3' ]</td>
+</tr>
+<tr>
+<td>'trim'</td>
+<td>[]</td>
+<td>Provide an array of JSON keys which you would like excluded from the view.</td>
+<td>[ 'key1', 'key2', 'key3' ]</td>
+</tr>
+<tr>
+<td>'keyMap'</td>
+<td>{}</td>
+<td>Provide more friendly names/translations for JSON keys.</td>
+<td>{ 'origKeyName': 'My Fancy New Key Name' }</td>
+</tr>
+<tr>
+<td>'filterMap'</td>
+<td>{}</td>
+<td>Specify functions to filter specific JSON values before displaying them in the table.</td>
+<td>{ 'keyIWantToFilter': 'myFilterFunctionsName' }</td>
+</tr>
+<tr>
+<td>'paginationId'</td>
+<td>String</td>
+<td>Provide an element ID for the pagination links if you would like to enable pagination</td>
+<td>default: Disabled</td>
+</tr>
+<tr>
+<td>'perPage'</td>
+<td>Int</td>
+<td>How many results should be on each 'page'?</td>
+<td>default: 10</td>
+</tr>
+<tr>
+<td>'searchId'</td>
+<td>String</td>
+<td>Allow searching of the JSON data by providing the ID for your search text box input.</td>
+<td>'myInputID'</td>
+</tr>
+<tr>
+<td>'breakpoints'</td>
+<td>{}</td>
+<td>Provide custom breakpoints for the FooTable.</td>
+<td>default: { phone: 480, tablet: 1024, desktop: 10000 }</td>
+</tr>
+<tr>
+<td>'makeFootable'</td>
+<td>Boolean</td>
+<td>Disable the creation of the FooTable object for a plain HTML table by setting this to false.</td>
+<td>default: true</td>
+</tr>
+</tbody>
+</table><h3>
+<a name="usage-advanced-case" class="anchor" href="#usage-advanced-case"><span class="octicon octicon-link"></span></a>Usage (Advanced Case)</h3>
+
+<h5>
+<a name="html-1" class="anchor" href="#html-1"><span class="octicon octicon-link"></span></a>HTML:</h5>
+
+<div class="highlight"><pre>
+Filter: <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">"myFilter"</span> <span class="na">type=</span><span class="s">"text"</span> <span class="nt">/&gt;</span> 
+
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"table"</span><span class="nt">&gt;&lt;/div&gt;</span>
+
+<span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">"pagination1"</span> <span class="na">class=</span><span class="s">"footable-nav"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;span&gt;</span>Pages:<span class="nt">&lt;/span&gt;</span>
+<span class="nt">&lt;/ul&gt;</span>
+
+</pre></div>
+
+<h5>
+<a name="javascript-1" class="anchor" href="#javascript-1"><span class="octicon octicon-link"></span></a>Javascript:</h5>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">yell</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span> 
+    <span class="k">return</span> <span class="nx">data</span> <span class="o">+</span> <span class="s2">"!"</span><span class="p">;</span> 
+<span class="p">}</span>
+
+<span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">$</span><span class="p">){</span>
+    <span class="nx">JSONTable</span><span class="p">(</span><span class="s2">"table"</span><span class="p">,</span> <span class="nx">JSON</span><span class="p">,</span> <span class="p">{</span> 
+        <span class="cm">/*</span>
+<span class="cm">            show also accepts a string in the form of: </span>
+<span class="cm">                show: "first_@" // where @ is an integer representing the number of cols to show</span>
+<span class="cm">        */</span> 
+        <span class="c1">// show: 'first_5'</span>
+        <span class="nx">show</span><span class="o">:</span> <span class="p">[</span><span class="s1">'a'</span><span class="p">,</span><span class="s1">'c'</span><span class="p">,</span><span class="s1">'e'</span><span class="p">]</span> 
+        <span class="cm">/*</span>
+<span class="cm">            keyMap instructs JSONTable to rename JSON Keys</span>
+<span class="cm">        */</span>
+        <span class="p">,</span> <span class="nx">keyMap</span><span class="o">:</span> <span class="p">{</span> 
+            <span class="s1">'a'</span><span class="o">:</span> <span class="s1">'Alphabet Soup'</span>
+        <span class="p">}</span>
+        <span class="cm">/*</span>
+<span class="cm">            filterMap instructs JSONTable to run content through your own custom filter functions.  </span>
+<span class="cm">            setup your filter functions like so: </span>
+
+<span class="cm">            var myFilter = function(data) { </span>
+<span class="cm">                // manipulate your data here and then: </span>
+<span class="cm">                return data; // so we can render it into the JSONTable</span>
+<span class="cm">            }</span>
+<span class="cm">        */</span>
+        <span class="p">,</span> <span class="nx">filterMap</span><span class="o">:</span> <span class="p">{</span> 
+            <span class="s1">'a'</span><span class="o">:</span> <span class="s1">'yell'</span>
+        <span class="p">}</span>
+        <span class="c1">// provide the ID of the text box used for searching/filtering JSON data: </span>
+        <span class="p">,</span> <span class="nx">searchId</span><span class="o">:</span> <span class="s1">'myFilter'</span>
+        <span class="c1">// provide the ID of the element where you would like to store your pagination links: </span>
+        <span class="p">,</span> <span class="nx">paginationId</span><span class="o">:</span>  <span class="s1">'pagination1'</span>
+        <span class="c1">// let JSON table know how many items you would like per page: </span>
+        <span class="p">,</span> <span class="nx">perPage</span><span class="o">:</span> <span class="mi">10</span>
+    <span class="p">});</span> 
+<span class="p">});</span> 
+</pre></div>
+        </section> <!-- end of #main-content -->
+        <section id="license-content">
+
+<h3>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h3>
+
+<div class="highlight"><pre><span class="nx">The</span> <span class="nx">MIT</span> <span class="nx">License</span> <span class="p">(</span><span class="nx">MIT</span><span class="p">)</span>
+
+<span class="nx">Copyright</span> <span class="p">(</span><span class="nx">c</span><span class="p">)</span> <span class="mi">2013</span> <span class="nx">Jonathan</span> <span class="nx">Greenemeier</span>
+
+<span class="nx">Permission</span> <span class="nx">is</span> <span class="nx">hereby</span> <span class="nx">granted</span><span class="p">,</span> <span class="nx">free</span> <span class="nx">of</span> <span class="nx">charge</span><span class="p">,</span> <span class="nx">to</span> <span class="nx">any</span> <span class="nx">person</span> <span class="nx">obtaining</span> <span class="nx">a</span> <span class="nx">copy</span>
+<span class="nx">of</span> <span class="k">this</span> <span class="nx">software</span> <span class="nx">and</span> <span class="nx">associated</span> <span class="nx">documentation</span> <span class="nx">files</span> <span class="p">(</span><span class="nx">the</span> <span class="s2">"Software"</span><span class="p">),</span> <span class="nx">to</span> <span class="nx">deal</span>
+<span class="k">in</span> <span class="nx">the</span> <span class="nx">Software</span> <span class="nx">without</span> <span class="nx">restriction</span><span class="p">,</span> <span class="nx">including</span> <span class="nx">without</span> <span class="nx">limitation</span> <span class="nx">the</span> <span class="nx">rights</span>
+<span class="nx">to</span> <span class="nx">use</span><span class="p">,</span> <span class="nx">copy</span><span class="p">,</span> <span class="nx">modify</span><span class="p">,</span> <span class="nx">merge</span><span class="p">,</span> <span class="nx">publish</span><span class="p">,</span> <span class="nx">distribute</span><span class="p">,</span> <span class="nx">sublicense</span><span class="p">,</span> <span class="nx">and</span><span class="o">/</span><span class="nx">or</span> <span class="nx">sell</span>
+<span class="nx">copies</span> <span class="nx">of</span> <span class="nx">the</span> <span class="nx">Software</span><span class="p">,</span> <span class="nx">and</span> <span class="nx">to</span> <span class="nx">permit</span> <span class="nx">persons</span> <span class="nx">to</span> <span class="nx">whom</span> <span class="nx">the</span> <span class="nx">Software</span> <span class="nx">is</span>
+<span class="nx">furnished</span> <span class="nx">to</span> <span class="k">do</span> <span class="nx">so</span><span class="p">,</span> <span class="nx">subject</span> <span class="nx">to</span> <span class="nx">the</span> <span class="nx">following</span> <span class="nx">conditions</span><span class="o">:</span>
+
+<span class="nx">The</span> <span class="nx">above</span> <span class="nx">copyright</span> <span class="nx">notice</span> <span class="nx">and</span> <span class="k">this</span> <span class="nx">permission</span> <span class="nx">notice</span> <span class="nx">shall</span> <span class="nx">be</span> <span class="nx">included</span> <span class="k">in</span>
+<span class="nx">all</span> <span class="nx">copies</span> <span class="nx">or</span> <span class="nx">substantial</span> <span class="nx">portions</span> <span class="nx">of</span> <span class="nx">the</span> <span class="nx">Software</span><span class="p">.</span>
+
+<span class="nx">THE</span> <span class="nx">SOFTWARE</span> <span class="nx">IS</span> <span class="nx">PROVIDED</span> <span class="s2">"AS IS"</span><span class="p">,</span> <span class="nx">WITHOUT</span> <span class="nx">WARRANTY</span> <span class="nx">OF</span> <span class="nx">ANY</span> <span class="nx">KIND</span><span class="p">,</span> <span class="nx">EXPRESS</span> <span class="nx">OR</span>
+<span class="nx">IMPLIED</span><span class="p">,</span> <span class="nx">INCLUDING</span> <span class="nx">BUT</span> <span class="nx">NOT</span> <span class="nx">LIMITED</span> <span class="nx">TO</span> <span class="nx">THE</span> <span class="nx">WARRANTIES</span> <span class="nx">OF</span> <span class="nx">MERCHANTABILITY</span><span class="p">,</span>
+<span class="nx">FITNESS</span> <span class="nx">FOR</span> <span class="nx">A</span> <span class="nx">PARTICULAR</span> <span class="nx">PURPOSE</span> <span class="nx">AND</span> <span class="nx">NONINFRINGEMENT</span><span class="p">.</span> <span class="nx">IN</span> <span class="nx">NO</span> <span class="nx">EVENT</span> <span class="nx">SHALL</span> <span class="nx">THE</span>
+<span class="nx">AUTHORS</span> <span class="nx">OR</span> <span class="nx">COPYRIGHT</span> <span class="nx">HOLDERS</span> <span class="nx">BE</span> <span class="nx">LIABLE</span> <span class="nx">FOR</span> <span class="nx">ANY</span> <span class="nx">CLAIM</span><span class="p">,</span> <span class="nx">DAMAGES</span> <span class="nx">OR</span> <span class="nx">OTHER</span>
+<span class="nx">LIABILITY</span><span class="p">,</span> <span class="nx">WHETHER</span> <span class="nx">IN</span> <span class="nx">AN</span> <span class="nx">ACTION</span> <span class="nx">OF</span> <span class="nx">CONTRACT</span><span class="p">,</span> <span class="nx">TORT</span> <span class="nx">OR</span> <span class="nx">OTHERWISE</span><span class="p">,</span> <span class="nx">ARISING</span> <span class="nx">FROM</span><span class="p">,</span>
+<span class="nx">OUT</span> <span class="nx">OF</span> <span class="nx">OR</span> <span class="nx">IN</span> <span class="nx">CONNECTION</span> <span class="nx">WITH</span> <span class="nx">THE</span> <span class="nx">SOFTWARE</span> <span class="nx">OR</span> <span class="nx">THE</span> <span class="nx">USE</span> <span class="nx">OR</span> <span class="nx">OTHER</span> <span class="nx">DEALINGS</span> <span class="nx">IN</span>
+<span class="nx">THE</span> <span class="nx">SOFTWARE</span><span class="p">.</span>
+</pre></div>
+        </section> <!-- end of #license-content -->
+
+        <aside id="sidebar">
+          <a href="https://github.com/6eDesign/JSONTable/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/6eDesign/JSONTable/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/6eDesign/JSONTable"></a> is maintained by <a href="https://github.com/6eDesign">6eDesign</a>.</p>
+
+          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
 
             <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

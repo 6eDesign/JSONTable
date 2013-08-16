@@ -1028,7 +1028,9 @@ $(document).ready(function($){
 			keyMap instructs JSONTable to rename JSON Keys
 		*/
 		, keyMap: { 
-			'a': 'Alphabet Soup'
+			'a': 'Customer', 
+			'c': 'E-Mail', 
+			'e': 'Lorem Ipsum'
 		}
 		/*
 			filterMap instructs JSONTable to run content through your own custom filter functions.  
