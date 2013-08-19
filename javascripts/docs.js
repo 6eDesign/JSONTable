@@ -1,10 +1,11 @@
+var atab = "&nbsp;&nbsp;";
 var options = [
 	{
 		"paramName": "'show'",
-		"paramType": "String or [Array]", 
+		"paramType": "String <br><em>"+atab+"or</em><br> [Array]", 
 		"paramDefault": "'first_6'", 
 		"paramExplanation": "Specify how many (String) or which (Array) of the JSON keys should be included in the default column layout.", 
-		"paramExample": "show: 'first_#' // where # is an integer representing the number of columns to show by default<br>" 
+		"paramExample": "show: 'first_#' // where # is an integer representing the number of columns to show by default\r\n"+atab+"<em>or</em>\r\n" 
 						+ "show: ['key1', 'key2', 'key3']" 
 	},
 	{
@@ -27,7 +28,7 @@ var options = [
 		"paramDefault": "{}", 
 		"paramExplanation": "Specify functions to filter specific JSON values before displaying them in the table."
 							+ " Filter should be setup like this: <br>"
-							+ " <pre>var myFilter = function(data) { \r\n\t " 
+							+ " <pre style='margin-top:10px;'>var myFilter = function(data) { \r\n" + atab 
 							+ "return '&lt;em&gt;' + data + '&lt;/em&gt;' \r\n}", 
 		"paramExample": "filterMap: 'myFilter'" 
 	},
@@ -69,9 +70,24 @@ var options = [
 	}
 ]
 
+var preWrap = function(data) { 
+	return "<pre>" + data + "</pre>";
+}
+
 $(document).ready(function($) { 
 	tableopts = { 
 		'show': [ 'paramName', 'paramType', 'paramExplanation' ],
+		'keyMap': { 
+			'paramName': 'Key', 
+			'paramType': 'Type', 
+			'paramDefault': 'Default Value', 
+			'paramExplanation': 'Description', 
+			'paramExample': 'Example Value'
+		},
+		'filterMap': { 
+			'paramExample': 'preWrap', 
+			'paramDefault': 'preWrap'
+		},
 		'breakpoints': { phone: 250, tablet: 300, desktop: 10000 } 
 	}
 	JSONTable('optionsTable', options, tableopts); 
