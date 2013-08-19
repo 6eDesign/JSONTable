@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Main Demo</title>
+	<!-- 
+		When used without FooTable, JSONTable does not have any CSS
+		dependencies.  However, since it is designed to work with 
+		FooTable, the following CSS is a great start for those who want 
+		to roll their own CSS (and a great finish for lazy people): 
+	-->
+    <link rel="stylesheet" type="text/css" href="stylesheets/footable-0.1.css">
+	<link rel="stylesheet" type="text/css" href="stylesheets/footable.columnPicker.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/footable.paginate.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/footable.sortable-0.1.css">
+
+    <!-- This is just demo CSS: -->
+    <link rel="stylesheet" type="text/css" href="stylesheets/demo.css">
+</head>
+<body>
+
+	<!-- 
+		Pagination and Filter Elements are part of the FooTable library, 
+		more information can be found here: github.com/bradvin/FooTable/
+		but the basic layout is as follows:  
+	-->
+	<div class="footableController">
+		<div class="filterArea">
+			<label for="myFilter">Filter:</label>
+			<input id="myFilter" type="text" placeholder="Search Table" />
+		</div>
+		<ul id="pagination1" class="footable-nav"><span>Pages:</span></ul>
+	</div>
+
+	<!-- For a pure HTML/JavaScript solution, just include the table -->
+	<div id="table"></div>
+
+    <!-- Footable Javascript & Dependencies: -->
+    <script type="text/javascript" src="javascripts/vendor/jquery.js"></script>
+    <script type="text/javascript" src="javascripts/FooTable/footable.js"></script>
+    <script type="text/javascript" src="javascripts/FooTable/footable.paginate.js"></script>
+    <script type="text/javascript" src="javascripts/FooTable/footable.filter.js"></script>
+    <script type="text/javascript" src="javascripts/FooTable/footable.plugin.columnpicker.js"></script>
+    <script type="text/javascript" src="javascripts/FooTable/footable.sortable.js"></script>
+
+	<!-- 
+		JSONTable.js is the only strict JS dependency, but footable.js 
+		files can be loaded to enhance functionality and provide a 
+		beautiful responsive layout.							
+	-->
+    <script type="text/javascript" src="javascripts/JSONTable/JSONTable.js"></script>
+
+
+    <!-- example.js is here simply to load some JSON for JSONTable -->
+    <script type="text/javascript" src="javascripts/example.js"></script>
+</body>
+</html>

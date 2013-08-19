@@ -34,7 +34,7 @@
             <!-- Title Area -->
             <li class="name">
                 <h1>
-                    <a href="index.html" class="active">
+                    <a href="index.html">
                         JSONTable
                     </a>
                 </h1>
@@ -79,84 +79,88 @@
             </ul>
         </section>
     </nav>
-    <div class="row">
-        <img src="img/callout1.jpg" class="calloutImage large-12 columns" alt="Introducing JSONTable by 6eDesign w/ the power of FooTable by Bradvin" />
-        <hr style="margin-bottom: 32px;">
-        <div class="well large-12 columns">
-            <div class="large-3 columns">
-                <div class="row">
-                    <div class="small-4 columns">
-                        <span class="icon icon-fullscreen">&nbsp;</span>
-                    </div>
-                    <div class="small-8 columns">
-                        Quick, Easy, Customizeable, &amp; Responsive
-                    </div>
-                </div>
-            </div>
-            <div class="large-3 columns">
-                <div class="row">
-                    <div class="small-4 columns">
-                        <span class="icon icon-battery-charging">&nbsp;</span>
-                    </div>
-                    <div class="small-8 columns">
-                        With the power of <a href="http://github.com/bradvin/FooTable/" id="">FooTable</a>
-                    </div>
-                </div>
-            </div>
-            <div class="large-3 columns">
-                <div class="row">
-                    <div class="small-4 columns">
-                        <span class="icon icon-wrench">&nbsp;</span>
-                    </div>
-                    <div class="small-8 columns">
-                        Try the <a href="interactiveDemo.html">Interactive Demo</a>
-                    </div>
-                </div>
-            </div>
-            <div class="large-3 columns">
-                <div class="row">
-                    <div class="small-4 columns">
-                        <span class="icon icon-notebook">&nbsp;</span>
-                    </div>
-                    <div class="small-8 columns">
-                        Read the <a href="documentation.html">docs</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row" style="margin-top: 4px;">
-        <hr>
-        <h4>Example Result:</h4>
-<!--         <div class="footableController2">
-            <div class="filterArea large-4 columns">
-                <input id="myFilter" type="text" placeholder="Search Table" />
-            </div>
-            <ul id="pagination1" class="footable-nav large-8 columns"><span>Pages:</span></ul>
-        </div> -->
-        <div class="large-12 columns">
-            <iframe src="simpleDemo.html" frameborder="0" id="responsiveContainer"></iframe>
-            <!-- <div id="table"></div> -->
-        </div>
-    </div>
-    <div class="row">
-        <hr>
-        <div class="large-12 columns">
-            <h4>Example HTML:</h4>
-            <div id="htmleditor"></div>
-        </div>
-    </div>
-    <div class="row">
-        <hr>
-        <div class="large-6 columns">
-            <h4>Example JSON:</h4>
-            <div id="jsoneditor"></div>
+    <!-- Begin Content -->
+    <div class="row fullwidthcontainer">
+        <div class="large-6 columns" id="widthref">
+            <dl class="sub-nav" id="responsiveNav">
+                <dt>Responsive Menu:</dt>
+                <dd class="active">
+                    <a href="#" class="responsiveDemoLink" data-width="full">PC/Laptop</a>
+                </dd>
+                <dd>
+                    <a href="#" class="responsiveDemoLink" data-width="500">Tablet</a>
+                </dd>
+                <dd>
+                    <a href="#" class="responsiveDemoLink" data-width="250">Phone</a>
+                </dd>
+            </dl>
+            <iframe id="responsiveContainer" src="mainDemo.html"></iframe>
         </div>
         <div class="large-6 columns">
-            <h4>Example JavaScript:</h4>
-            <div id="javascripteditor"></div>
+            <dl class="sub-nav" id="playgroundNav">
+              <!-- <dt>Filter:</dt> -->
+                <dd>
+                    <a class="tablink" href="#theHTML" rel="demotabs">The HTML</a>
+                </dd>
+                <dd>
+                    <a class="tablink" href="#theJavaScript" rel="demotabs">The JavaScript</a>
+                </dd>
+                <dd>
+                    <a class="tablink" href="#theJSON" rel="demotabs">The JSON</a>
+                </dd>
+                <dd>
+                    <a class="tablink" href="#theOptions" ref="demotabs">The Options</a>
+                </dd>
+            </dl>
+            <div id="demotabs">
+                <section id="theHTML" style="display:none;">
+<div id="htmlEditor"></div>
+                </section>
+                <section id="theJavaScript" style="display:none;">
+<div id="javascriptEditor">var yell = function(data) { 
+    return data + "!"; 
+}
+
+$(document).ready(function($){
+    JSONTable("table", theJSON, { 
+        show: ['a','c','e'] 
+        , keyMap: { 
+            'a': 'Customer', 
+            'c': 'E-Mail', 
+            'e': 'Lorem Ipsum'
+        }
+        , filterMap: { 
+            'a': 'yell'
+        }
+        , searchId: 'myFilter'
+        , paginationId:  'pagination1'
+        , perPage: 10
+        , breakpoints: { phone: 400, tablet: 500, desktop: 10000 } 
+    }); 
+});</div>
+                </section>
+                <section id="theJSON" style="display:none;">
+                    <div id="jsonEditor"></div>
+                </section>
+                <section id="theOptions" style="display:none;">
+                    <div id="optsEditor"></div>
+                </section>
+
+                <div id="demoMenu">
+                    <ul class="button-group">
+                      <li><a href="#" id="updateJSONTable" class="small button">Update Table</a></li>
+                      <li><a href="#" id="resetJSONTable" class="small button">Reset Table</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            </div>
         </div>
     </div>
+    <!-- End Content -->
+
+
+
     <div class="row">
         <div class="large-12 columns">
 
@@ -201,7 +205,6 @@
 
     <script src="javascripts/foundation/foundation.js"></script>
 
-    <!--
     <script src="javascripts/foundation/foundation.alerts.js"></script>
 
     <script src="javascripts/foundation/foundation.clearing.js"></script>
@@ -223,8 +226,7 @@
     <script src="javascripts/foundation/foundation.placeholder.js"></script>
 
     <script src="javascripts/foundation/foundation.reveal.js"></script>
-    -->
-    
+
     <script src="javascripts/foundation/foundation.section.js"></script>
 
     <script src="javascripts/foundation/foundation.tooltips.js"></script>
@@ -255,7 +257,8 @@
     
 
     <!-- Demo JS: -->
-    <script type="text/javascript" src="javascripts/home_demo.js"></script>
+    <script type="text/javascript" src="javascripts/tabs.js"></script>
+    <script type="text/javascript" src="javascripts/demo.js"></script>
 
     <script>
     $(document).foundation();
