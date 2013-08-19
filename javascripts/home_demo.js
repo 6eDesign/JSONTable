@@ -1046,8 +1046,6 @@ $(document).ready(function($){
 
 		// setup html ace
 		htmleditor = createEditor('htmleditor', 'html', true); 
-		htmleditor.setValue(iframe.contentWindow.document.documentElement.innerHTML);
-		htmleditor.clearSelection(); 
 
 		// setup json ace
 		jsoneditor = createEditor('jsoneditor', 'javascript', true); 
@@ -1066,9 +1064,10 @@ $(document).ready(function($){
 
 		// tell the iframe to setup the footable: 
 		iframe.contentWindow.location.href = "simpleDemo.html"; 
-		console.log("Loading iframe..."); 
 		iframe.onload = function() { 
-			iframe.contentWindow.postMessage(defaultOpts, '*'); 
+			htmleditor.setValue(iframe.contentWindow.document.documentElement.innerHTML);
+			htmleditor.clearSelection(); 
+			iframe.contentWindow.postMessage( JSON.stringify( defaultOpts ), '*' ); 
 		}
 	})(); 
 }); 

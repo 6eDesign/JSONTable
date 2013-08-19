@@ -86,133 +86,136 @@
 		// settings = $.extend({}, defaultopts, opts);
 		settings = extend(defaultopts, opts);
 
-		for(var key in json[0]) { 
-			if(!inArray(key,settings.trim)) { 
-				columns.push(key);  
-				
-				var dataClass = ""; 
-				var dataHide = ""; 
+		if(typeof json != "undefined") { 
+			for(var key in json[0]) { 
+				if(!inArray(key,settings.trim)) { 
+					columns.push(key);  
+					
+					var dataClass = ""; 
+					var dataHide = ""; 
 
-				if(typeof settings.show == "string") { 
-					if(settings.show.indexOf("first_") > -1) { 
-						var maxShown = parseInt(settings.show.split('first_')[1]); 
-					} else { 
-						maxShown = 3; 
-						console.log("JSONTAble: Unrecognized format for 'show' parameter (must be string in form: 'first_@', where @ is an integer or an array of JSON Keys).");
-					}
-					if(columns.length == 1) { 
-						dataClass = "expand"; 
-					} 
-					if(columns.length > maxShown) { 
-						dataHide = "phone,tablet,desktop"; 
-					} else if(columns.length > 2) { 
-						dataHide = "phone,tablet"; 
-					} else if(columns.length > 1) { 
-						dataHide = "phone"; 
-					}
-				} else { 
-					if(inArray(key,settings.show)) { 
-						visiblecols.push(key); 
-						dataHide = ""; 
-						if(visiblecols.length == 1) { 
+					if(typeof settings.show == "string") { 
+						if(settings.show.indexOf("first_") > -1) { 
+							var maxShown = parseInt(settings.show.split('first_')[1]); 
+						} else { 
+							maxShown = 3; 
+							console.log("JSONTAble: Unrecognized format for 'show' parameter (must be string in form: 'first_@', where @ is an integer or an array of JSON Keys).");
+						}
+						if(columns.length == 1) { 
 							dataClass = "expand"; 
-						}
-						if(visiblecols.length > 2) { 
+						} 
+						if(columns.length > maxShown) { 
+							dataHide = "phone,tablet,desktop"; 
+						} else if(columns.length > 2) { 
 							dataHide = "phone,tablet"; 
-						} else if(visiblecols.length > 1) { 
+						} else if(columns.length > 1) { 
 							dataHide = "phone"; 
-						}					
-					} else { 
-						dataHide = "phone,tablet,desktop"
-					}
-				}
-				
-				if(typeof settings.keyMap[key] != "undefined") { 
-					key = settings.keyMap[key]; 
-				}
-
-				columnsJSON.push({
-					type: 'th', 
-					attributes: {
-						'data-class': dataClass, 
-						'data-hide': dataHide
-					}, 
-					contains: [ key ] 			
-				})
-			}
-		}
-		
-		var tableAttrs = { 'class': 'footable' }; 
-		if(settings.searchId != "") { 
-			tableAttrs['data-filter'] = "#" + settings.searchId; 
-		}
-		if(settings.paginationId != "") { 
-			settings.paginate = true; 
-			tableAttrs['data-page-navigation'] = "#" + settings.paginationId; 
-			tableAttrs['data-page-size'] = settings.perPage; 
-		} else { settings.paginate = false; } 
-
-		table = window.create({
-			type: 'table', 
-			attributes: tableAttrs,
-			contains: [
-				{
-					type: 'thead', 
-					attributes: { }, 
-					contains: [
-						{
-							type: 'tr', 
-							attributes: { }, 
-							contains: columnsJSON
 						}
-					] 
-				}
-			] 
-		})
-
-		tbody = window.create({
-			type: 'tbody', 
-			attributes: { }, 
-			contains: []
-		})
-
-		for(var i=0; i < json.length; ++i) { 
-			var row = window.create({
-				type: 'tr', 
-				attributes: { }
-			}); 
-			for(var j=0; j < columns.length; ++j) { 
-				if(json[i][columns[j]] == null) { 
-					json[i][columns[j]] = ""; 
-				}
-				
-				var data = json[i][columns[j]]; 
-
-				// check if a filter is defined for this json key: 
-				if(typeof settings.filterMap[columns[j]] != "undefined") { 
-					// make sure it's a function: 
-					if(typeof window[settings.filterMap[columns[j]]] == "function") { 
-						// call that function: 
-						data = window[settings.filterMap[columns[j]]](json[i][columns[j]]); 
+					} else { 
+						if(inArray(key,settings.show)) { 
+							visiblecols.push(key); 
+							dataHide = ""; 
+							if(visiblecols.length == 1) { 
+								dataClass = "expand"; 
+							}
+							if(visiblecols.length > 2) { 
+								dataHide = "phone,tablet"; 
+							} else if(visiblecols.length > 1) { 
+								dataHide = "phone"; 
+							}					
+						} else { 
+							dataHide = "phone,tablet,desktop"
+						}
 					}
+					
+					if(typeof settings.keyMap[key] != "undefined") { 
+						key = settings.keyMap[key]; 
+					}
+
+					columnsJSON.push({
+						type: 'th', 
+						attributes: {
+							'data-class': dataClass, 
+							'data-hide': dataHide
+						}, 
+						contains: [ key ] 			
+					})
 				}
-				var td = window.create({
-					type: 'td', 
-					attributes: {}, 
-					contains: [ data ]
-				})
-				row.appendChild(td); 
-			} 
-			tbody.appendChild(row); 
-		}
+			}
+			var tableAttrs = { 'class': 'footable' }; 
+			if(settings.searchId != "") { 
+				tableAttrs['data-filter'] = "#" + settings.searchId; 
+			}
+			if(settings.paginationId != "") { 
+				settings.paginate = true; 
+				tableAttrs['data-page-navigation'] = "#" + settings.paginationId; 
+				tableAttrs['data-page-size'] = settings.perPage; 
+			} else { settings.paginate = false; } 
 
-		table.appendChild(tbody); 
-		targetdiv.appendChild(table); 
+			table = window.create({
+				type: 'table', 
+				attributes: tableAttrs,
+				contains: [
+					{
+						type: 'thead', 
+						attributes: { }, 
+						contains: [
+							{
+								type: 'tr', 
+								attributes: { }, 
+								contains: columnsJSON
+							}
+						] 
+					}
+				] 
+			})
 
-		if(settings.makeFootable) { 
-			$ = jQuery;
-			$(table).footable({breakpoints: settings.breakpoints, paginate: settings.paginate });
-		}
-		return table; 
+			tbody = window.create({
+				type: 'tbody', 
+				attributes: { }, 
+				contains: []
+			})
+
+			for(var i=0; i < json.length; ++i) { 
+				var row = window.create({
+					type: 'tr', 
+					attributes: { }
+				}); 
+				for(var j=0; j < columns.length; ++j) { 
+					if(json[i][columns[j]] == null) { 
+						json[i][columns[j]] = ""; 
+					}
+					
+					var data = json[i][columns[j]]; 
+
+					// check if a filter is defined for this json key: 
+					if(typeof settings.filterMap[columns[j]] != "undefined") { 
+						// make sure it's a function: 
+						if(typeof window[settings.filterMap[columns[j]]] == "function") { 
+							// call that function: 
+							data = window[settings.filterMap[columns[j]]](json[i][columns[j]]); 
+						}
+					}
+					var td = window.create({
+						type: 'td', 
+						attributes: {}, 
+						contains: [ data ]
+					})
+					row.appendChild(td); 
+				} 
+				tbody.appendChild(row); 
+			}
+
+			table.appendChild(tbody); 
+			targetdiv.appendChild(table); 
+
+			if(settings.makeFootable) { 
+				$ = jQuery;
+				$(table).footable({breakpoints: settings.breakpoints, paginate: settings.paginate });
+			}
+			return table; 
+		} else { 
+			console.log("JSONTable: JSON is undefined"); 
+		}	
 	}
 }).call(this);

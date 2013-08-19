@@ -36,7 +36,7 @@ $(document).ready(function($){
 	}
 
 	htmlEditor = createEditor("htmlEditor","html",true); 
-	htmlEditor.setValue(iframe.contentWindow.document.documentElement.innerHTML); 
+	htmlEditor.setValue("Loading . . . "); 
 	htmlEditor.clearSelection(); 
 
 	jsonEditor = createEditor("jsonEditor","javascript"); 
@@ -81,9 +81,11 @@ var updateJavascriptValues = function() {
 
 var updateFrame = function(opts) {
 	iframe.contentWindow.location.href = "mainDemo.html"; 
-	console.log("Reloading iframe..."); 
 	iframe.onload = function() { 
-		iframe.contentWindow.postMessage(opts, '*'); 
+		htmlEditor.setValue(iframe.contentWindow.document.documentElement.innerHTML); 
+		htmlEditor.clearSelection(); 
+		iframe.contentWindow.postMessage( JSON.stringify(opts), '*'); 
+		allowRefresh(false);
 	}
 }
 

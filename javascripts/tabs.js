@@ -53,7 +53,7 @@ jQuery(document).ready(function($) {
 					} 
 				}
 			}); 
-			if(location.hash=="") { 
+			if(location.hash=="" || location.hash=="#") {
 				location.hash = tablinks[0].getAttribute('href'); 
 			} else { 
 				var timer = window.setTimeout(function() { 
