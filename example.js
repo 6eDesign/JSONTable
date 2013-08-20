@@ -256,7 +256,7 @@ $(document).ready(function($) {
         paginationId: 'pagination1'
         // let JSON table how many items you would like per page: 
         ,
-        perPage: 10
+        perPage: 5
         // , makeFootable: false
         ,
         breakpoints: {
