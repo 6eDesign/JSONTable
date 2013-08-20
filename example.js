@@ -245,7 +245,7 @@ $(document).ready(function($) {
         filterMap: {
             'a': 'yell', 
             'keyword': 'handleArray', 
-            'vars': 'handleArray', 
+            // 'vars': 'handleArray', 
             'grammars_used': 'handleArray'
         }
         // provide the ID of the text box used for searching/filtering JSON data: 
