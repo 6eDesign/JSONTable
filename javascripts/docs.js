@@ -1,12 +1,25 @@
 var atab = "&nbsp;&nbsp;";
 var options = [
 	{
+		"paramName": "'deepScan'", 
+		"paramType": "Boolean", 
+		"paramDefault": "false", 
+		"paramExplanation": "This parameter will tell JSONTable whether or not your data provider omits empty fields from individual componenets of the JSON array.  If one member of the JSON array might contain different fields than the next, enable 'deepScan' to retrieve a complete list of the available JSON keys (see notes on 'deepScan' below).", 
+		"paramExample": "deepScan: true"
+	},
+	{
 		"paramName": "'show'",
-		"paramType": "String <br><em>"+atab+"or</em><br> [Array]", 
-		"paramDefault": "'first_6'", 
-		"paramExplanation": "Specify how many (String) or which (Array) of the JSON keys should be included in the default column layout.", 
-		"paramExample": "show: 'first_#' // where # is an integer representing the number of columns to show by default\r\n"+atab+"<em>or</em>\r\n" 
-						+ "show: ['key1', 'key2', 'key3']" 
+		"paramType": "[Array]", 
+		"paramDefault": "[]", 
+		"paramExplanation": "Specify which and the order (Array) of the JSON keys that should be included in the default column layout.", 
+		"paramExample": "show: ['key1', 'key2', 'key3']" 
+	},
+	{
+		"paramName": "'numCols'", 
+		"paramType": "Integer", 
+		"paramDefault": "6", 
+		"paramExplanation": "If the 'show' parameter is left empty, this parameter can be used to specify the default <em>number</em> of columns in the default layout.", 
+		"paramExample": "numCols: 3"
 	},
 	{
 		"paramName": "'trim'",
@@ -76,7 +89,7 @@ var preWrap = function(data) {
 
 $(document).ready(function($) { 
 	tableopts = { 
-		'show': [ 'paramName', 'paramType', 'paramExplanation' ],
+		'show': [ 'paramName', 'paramType', 'paramExample', 'paramDefault' ],
 		'keyMap': { 
 			'paramName': 'Key', 
 			'paramType': 'Type', 
