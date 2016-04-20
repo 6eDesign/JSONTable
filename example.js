@@ -1051,6 +1051,11 @@ $(document).ready(function($){
 		// let JSON table how many items you would like per page: 
 		, perPage: 10
 		// , makeFootable: false
-		, breakpoints: { phone: 400, tablet: 500, desktop: 10000 } 
+		, breakpoints: { phone: 400, tablet: 500, desktop: 10000 }
+		// click handlers for rows: 
+		, rowClick: function(rowJSON) { 
+			console.log('this row was clicked, ', this); 
+			console.log('this row contains this json: ', rowJSON);
+		}
 	}); 
 }); 
